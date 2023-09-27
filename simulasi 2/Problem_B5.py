@@ -93,4 +93,4 @@ def solution_B5():
 if __name__ == '__main__':
     # DO NOT CHANGE THIS CODE
     model=solution_B5()
-    model.save("model_B5.h5")
+    # model.save("model_B5.h5")

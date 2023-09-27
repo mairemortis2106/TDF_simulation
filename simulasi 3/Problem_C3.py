@@ -92,4 +92,4 @@ def solution_C3():
 if __name__ == '__main__':
     # DO NOT CHANGE THIS CODE
     model = solution_C3()
-    model.save("model_C3.h5")
+    # model.save("model_C3.h5")
