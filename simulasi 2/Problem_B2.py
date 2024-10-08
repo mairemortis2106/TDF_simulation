@@ -44,7 +44,7 @@ def solution_B2():
     # COMPILE MODEL HERE
     model.compile(optimizer=tf.optimizers.legacy.Adam(),loss='sparse_categorical_crossentropy',metrics=['accuracy'])
     model.fit(train_data,train_label,validation_data=(test_data,test_label),epochs=100)
-
+    
     # TRAIN YOUR MODEL HERE
 
     return model

@@ -16,12 +16,13 @@ import tensorflow as tf
 import numpy as np
 import urllib
 from tensorflow.keras.preprocessing.text import Tokenizer
+
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 def solution_C4():
-    data_url = 'https://github.com/dicodingacademy/assets/raw/main/Simulation/machine_learning/sarcasm.json'
-    urllib.request.urlretrieve(data_url, 'sarcasm.json')
+    # data_url = 'https://github.com/dicodingacademy/assets/raw/main/Simulation/machine_learning/sarcasm.json'
+    # urllib.request.urlretrieve(data_url, 'sarcasm.json')
 
     # DO NOT CHANGE THIS CODE
     # Make sure you used all of these parameters or test may fail
@@ -70,22 +71,22 @@ def solution_C4():
                                    )
 
 
-    model = tf.keras.Sequential([
-        # YOUR CODE HERE. DO not change the last layer or test may fail
-        tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),
-        tf.keras.layers.GlobalAveragePooling1D(),
-        tf.keras.layers.Dense(128, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
-        tf.keras.layers.Dense(1, activation='sigmoid')
-    ])
-
     # model = tf.keras.Sequential([
     #     # YOUR CODE HERE. DO not change the last layer or test may fail
     #     tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),
-    #     tf.keras.layers.Conv1D(128, 5, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
-    #     tf.keras.layers.GlobalMaxPooling1D(),
-    #     tf.keras.layers.Dense(32, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+    #     tf.keras.layers.GlobalAveragePooling1D(),
+    #     tf.keras.layers.Dense(128, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
     #     tf.keras.layers.Dense(1, activation='sigmoid')
     # ])
+
+    model = tf.keras.Sequential([
+        # YOUR CODE HERE. DO not change the last layer or test may fail
+        tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),
+        tf.keras.layers.Conv1D(128, 5, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+        tf.keras.layers.GlobalMaxPooling1D(),
+        tf.keras.layers.Dense(32, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+        tf.keras.layers.Dense(1, activation='sigmoid')
+    ])
 
     model.compile(optimizer=tf.optimizers.legacy.Adam(learning_rate=0.001),
                   loss='binary_crossentropy',
